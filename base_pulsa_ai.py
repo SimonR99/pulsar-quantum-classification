@@ -3,6 +3,7 @@ import pandas as pd
 import torch
 from utils import specificity_score, negative_prediction_value_score, gmean_score, informedness_score
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, recall_score, precision_score, confusion_matrix
+from sklearn.preprocessing import StandardScaler
 
 class BasePulsarAI:
     def __init__(self):
@@ -30,7 +31,11 @@ class BasePulsarAI:
         df.columns = ['IpMean', 'IpDev', 'IpKurt','IpSkew', 'DMMean', 'DMDev', 'DMKurt', 'DMSkew', 'Class']
         X = df.iloc[:, :-1].values
         y = df.iloc[:, -1].values
-        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42)
+
+        scaler = StandardScaler()
+        X = scaler.fit_transform(X)
+
+        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=self.random_state)
 
 
         return x_train, x_test, y_train, y_test
