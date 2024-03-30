@@ -1,7 +1,5 @@
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, recall_score, precision_score, confusion_matrix, make_scorer
-import numpy as np
-import pandas as pd
-
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, recall_score, confusion_matrix
+import pennylane.numpy as np
 
 def specificity_score(y_true, y_pred):
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
