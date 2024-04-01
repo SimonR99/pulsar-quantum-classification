@@ -29,6 +29,8 @@ class ModelParameters:
             'npv': [],
             'gmean': [],
             'informedness': [],
+            'training_duration': [],
+            'testing_duration': [],
         }
 
         self.times = []
@@ -62,9 +64,6 @@ class ModelParameters:
         return loader
     
     def sub_select_dataset(self, X, y, n_samples, balanced=False):
-        
-
-        # Resample to achieve the desired balance and sample size
         if balanced:
             positive_indices = y == 1
             negative_indices = y == 0
@@ -86,7 +85,7 @@ class ModelParameters:
 
         return X_resampled[indices], y_resampled[indices]
 
-    def append_score(self, y_test, predicted_test):
+    def append_score(self, y_test, predicted_test, training_duration, testing_duration):
         self.scores['accuracy'].append(accuracy_score(y_test, predicted_test))
         self.scores['balanced_accuracy'].append(balanced_accuracy_score(y_test, predicted_test))
         self.scores['recall'].append(recall_score(y_test, predicted_test))
@@ -95,6 +94,7 @@ class ModelParameters:
         self.scores['npv'].append(negative_prediction_value_score(y_test, predicted_test))
         self.scores['gmean'].append(gmean_score(y_test, predicted_test))
         self.scores['informedness'].append(informedness_score(y_test, predicted_test))
-
+        self.scores['training_duration'].append(training_duration)
+        self.scores['testing_duration'].append(testing_duration)
         
         
