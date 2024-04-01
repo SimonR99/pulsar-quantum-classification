@@ -6,7 +6,7 @@ from utils import specificity_score, negative_prediction_value_score, gmean_scor
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, recall_score, precision_score, confusion_matrix
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.utils import resample
-
+from torch.utils.data import DataLoader, TensorDataset
 class ModelParameters:
     def __init__(self):
         self.model_version = "1.0.0"
@@ -56,6 +56,10 @@ class ModelParameters:
         y_test = torch.LongTensor(y_test)
         return x_train, x_test, y_train, y_test
     
+    def generate_batches(self, x, y, batch_size):
+        dataset = TensorDataset(x, y)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        return loader
     
     def sub_select_dataset(self, X, y, n_samples, balanced=False):
         
