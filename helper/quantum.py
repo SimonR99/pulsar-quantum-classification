@@ -6,7 +6,7 @@ import pennylane.numpy as np
 def create_qcnn_model(model_parameters, draw_model = False):
     n_qubits = model_parameters.num_features
 
-    dev = qml.device("lightning.qubit", wires=n_qubits)
+    dev = qml.device("default.qubit", wires=n_qubits)
 
     weight_shapes = {"weights_c1": 16, "weights_c2": 18, "weights_c3": 2}
 
