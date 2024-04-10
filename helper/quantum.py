@@ -20,7 +20,7 @@ def create_qcnn_model(model_parameters, draw_model = False):
         pool_layer(8)
 
         qml.Barrier()
-        conv_layer(weights_c2, 3, 4)
+        conv_layer(weights_c2, 5, 4)
 
         qml.Barrier()
         pool_layer(4)
