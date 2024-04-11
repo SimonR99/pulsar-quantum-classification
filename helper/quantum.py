@@ -3,7 +3,7 @@ import pennylane as qml
 import pennylane.numpy as np
 
 
-def create_qcnn_model(model_parameters, draw_model = False):
+def create_qcnn_model(model_parameters, draw_model = False, stride = 5):
     n_qubits = model_parameters.num_features
 
     dev = qml.device("default.qubit", wires=n_qubits)
@@ -14,13 +14,13 @@ def create_qcnn_model(model_parameters, draw_model = False):
     @qml.qnode(dev)
     def qnode(inputs, weights_c1, weights_c2, weights_c3):
         qml.AngleEmbedding(inputs, wires=range(n_qubits))
-        conv_layer(weights_c1, 5, 8)
+        conv_layer(weights_c1, stride, 8)
 
         qml.Barrier()
         pool_layer(8)
 
         qml.Barrier()
-        conv_layer(weights_c2, 5, 4)
+        conv_layer(weights_c2, 1, 4)
 
         qml.Barrier()
         pool_layer(4)
