@@ -34,12 +34,12 @@ Because we wanted to have the same result as in the paper, we selected the same 
 - Geometric Mean : $\sqrt{Recall*Specificity}$
 - Informedness : $Recall+Specificity-1$
 
-## Results
 
-TBD, but similar for now.
+## Notebooks
 
-## Citation
-
-
-QSVM :
-https://pennylane.ai/qml/demos/tutorial_kernel_based_training/
+data_exploration.ipynb : This notebook is used to explore the dataset and understand the data.
+classical_cnn.ipynb : This notebook is used to train and evaluate the classical CNN model.
+classical_svm.ipynb : This notebook is used to train and evaluate the classical SVM model.
+quantum_cnn.ipynb : This notebook is used to train and evaluate the quantum CNN model.
+quantum_svm.ipynb : This notebook is used to train and evaluate the quantum SVM model.
+quantum_cnn_early.ipynb : This notebook is used to train and evaluate the quantum CNN model with early stopping.
